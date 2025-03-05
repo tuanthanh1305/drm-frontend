@@ -3,10 +3,6 @@ import React from "react";
 const CanBoLopPage = () => {
   return (
     <div className="w-[1120px] mx-auto bg-gray-100 p-4 rounded-lg shadow-lg">
-   
-
-     
-
       <div className="flex space-x-2 p-4">
         <input
           type="text"
