@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Sidebar from "./components/student/Sidebar";
+import Header from "./components/student/Header";
+import NoticeBar from "./pages/PageStudents/NoticeBar";
+import ScoreInfo from "./pages/PageStudents/ScoreInfo";
+import ScoreTable from "./pages/PageStudents/ScoreTable";
+import ActionButtons from "./pages/PageStudents/ActionButtons";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const MainLayout = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet"
+      />
+      <main className="flex w-full min-h-screen max-sm:flex-col">
+        <Sidebar />
+        <section className="flex flex-col flex-1 max-sm:w-full">
+          <Header />
+          <article className="p-5">
+            <NoticeBar />
+            <ScoreInfo />
+            <ScoreTable />
+            <ActionButtons />
+          </article>
+        </section>
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default MainLayout;
