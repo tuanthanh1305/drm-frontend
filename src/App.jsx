@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Đúng
+import Sidebar from "./components/student/Sidebar";
+import Header from "./components/student/Header";
+import NoticeBar from "./pages/PgaesStudent/NoticeBar";
+import ScoreInfo from "./pages/PgaesStudent/ScoreInfo";
+import ScoreTable from "./pages/PgaesStudent/ScoreTable";
+import ActionButtons from "./pages/PgaesStudent/ActionButtons";
+import ConfirmationModal from "./pages/PgaesStudent/ConfirmationModal";
 
-function App() {
-  const [count, setCount] = useState(0)
+const MainLayout = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleConfirm = () => {
+    navigate("/");
+    setShowModal(false);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet"
+      />
+      <main className="flex w-full min-h-screen max-sm:flex-col">
+        <Sidebar />
+        <section className="flex flex-col flex-1 max-sm:w-full">
+          <Header />
+          <article className="p-5">
+            <NoticeBar />
+            <ScoreInfo />
+            <ScoreTable />
+            <ActionButtons onSubmit={() => setShowModal(true)} />
+          </article>
+          {showModal && (
+            <ConfirmationModal
+              onConfirm={handleConfirm}
+              onCancel={() => setShowModal(false)}
+            />
+          )}
+        </section>
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default MainLayout;
