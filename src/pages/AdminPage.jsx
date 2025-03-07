@@ -24,7 +24,7 @@ import {
 } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 import Admin from "../components/admin/Admin(danhmuc)";
-
+import StudentPage from "./StudentPage";
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
 const AdminPage = () => {
@@ -32,7 +32,8 @@ const AdminPage = () => {
     <>
       <Layout style={{ minHeight: "100vh" }}>
         <Slidebar />
-        <Admin />
+        {/* <Admin /> */}
+        <StudentPage/>
       </Layout>
     </>
   );
