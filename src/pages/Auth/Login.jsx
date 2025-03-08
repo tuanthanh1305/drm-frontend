@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../../public/css/Auth/Login.module.css";
+import axios from "axios"; // Thêm dòng này để tránh lỗi
+
 
 const FormInput = ({
   type = "text",
@@ -69,18 +71,27 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Here you would typically make an API call to login the user
-      // For example:
-      // await loginUser(formData);
+      const res = await axios.get("http://localhost:3001/users", {
+        params: { email: formData.email, password: formData.password },
+      });
 
-      // Simulate API call with timeout
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // After successful login, redirect to home
-      navigate("/");
+      if (res.data.length > 0) {
+        const user = res.data[0];
+        localStorage.setItem("token", JSON.stringify(user));
+        
+        // Chuyển hướng dựa trên vai trò
+        if (user.role === "admin") {
+          navigate("/admin/dashboard");
+        } else if (user.role === "student") {
+          navigate("/home-login");
+        } else if (user.role === "parent") {
+          navigate("/home-login");
+        }
+      } else {
+        alert("Sai email hoặc mật khẩu!");
+      }
     } catch (error) {
-      console.error("Login failed:", error);
-      // Handle error (show error message to user)
+      console.error("Lỗi đăng nhập:", error);
     } finally {
       setIsLoading(false);
     }
@@ -125,7 +136,7 @@ const Login = () => {
                   className={styles.loginButton}
                   disabled={isLoading}
                 >
-                  {isLoading ? "Logging in..." : "Login"}
+                  {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
                 </button>
                 <div className={styles.registerLink}>
                   Don't have an account?{" "}
