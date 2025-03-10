@@ -1,17 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ReporterPage from './components/class-leader/ReporterPage'
+import React, { useState } from "react";
+import { Avatar } from "antd";
+import {
+  Layout,
+  Menu,
+  Breadcrumb,
+  Table,
+  Input,
+  Button,
+  Modal,
+  Form,
+  Select,
+  Row,
+  Col,
+} from "antd";
+import {
+  UserOutlined,
+  DashboardOutlined,
+  SolutionOutlined,
+  FileTextOutlined,
+  BellOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import Title from "antd/es/typography/Title";
+import AdminPage from "./pages/AdminPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+const { Header, Content, Sider } = Layout;
+const { Option } = Select;
 
+const App = () => {
   return (
-    <>
-      <ReporterPage/>
-    </>
-  )
-}
+    <AdminPage />
+  );
+};
 
-export default App
+export default App;
