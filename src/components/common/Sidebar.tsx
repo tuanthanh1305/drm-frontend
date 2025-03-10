@@ -25,7 +25,7 @@ import Title from "antd/es/typography/Title";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
-const Slidebar = () => {
+const Sidebar = () => {
   return (
     <Sider
       width={260}
@@ -73,4 +73,4 @@ const Slidebar = () => {
   );
 };
 
-export default Slidebar;
+export default Sidebar;
