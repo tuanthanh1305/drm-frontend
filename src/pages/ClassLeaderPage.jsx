@@ -11,7 +11,7 @@ import "antd/dist/reset.css";
 const { Header, Sider, Content } = Layout;
 const { Option } = Select;
 
-const Dashboard = () => {
+const Teacher = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
@@ -108,4 +108,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Teacher;
