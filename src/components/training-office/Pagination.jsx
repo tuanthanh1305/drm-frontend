@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Pagination = () => (
-  <div className="p-4 flex justify-between items-center bg-white border-t">
+  <div className="p-4 flex justify-between items-center border-t">
     <div className="flex items-center">
       <label className="mr-2" htmlFor="recordsPerPage">Số bản hiển thị</label>
       <select className="border p-2 rounded" id="recordsPerPage">
