@@ -7,6 +7,8 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import "antd/dist/reset.css";
+import Slidebar from "../components/common/SideBar";
+import Headers from "../components/common/Header";
 
 const { Header, Sider, Content } = Layout;
 const { Option } = Select;
@@ -49,36 +51,9 @@ const Teacher = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        style={{ background: "#3B82F6" }}
-        width={250}
-      >
-        <div
-          className="logo"
-          style={{ color: "white", padding: 20, textAlign: "center" }}
-        >
-          {collapsed ? "A" : "Nguyễn Văn A"}
-        </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1">Dashboard</Menu.Item>
-          <Menu.Item key="2">Quản lý sinh viên</Menu.Item>
-          <Menu.Item key="3">Quản lý giảng viên</Menu.Item>
-          <Menu.Item key="4">Quản lý danh mục</Menu.Item>
-        </Menu>
-      </Sider>
+      <Slidebar />
       <Layout>
-        <Header style={{ background: "#fff", padding: 0 }}>
-          <Button
-            type="text"
-            onClick={toggleCollapsed}
-            style={{ fontSize: 16, marginLeft: 20 }}
-          >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </Button>
-        </Header>
+        <Headers />
         <Content style={{ margin: "16px" }}>
           <div style={{ background: "#fff", padding: 20, borderRadius: 8 }}>
             <div style={{ marginBottom: 16 }}>
