@@ -22,6 +22,7 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
+import logo from "../../assets/logo.png";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
@@ -47,10 +48,9 @@ const Headers = () => {
       >
         <Avatar
           size={64}
-          icon={<UserOutlined />}
-          src="https://www.w3schools.com/w3css/img_avatar1.png"
+          src={logo}
           className="logo"
-          style={{ marginLeft: "20px" }}
+          style={{ marginLeft: "20px", backgroundColor: "white" }}
         />
         <div
           style={{

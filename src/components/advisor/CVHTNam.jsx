@@ -69,7 +69,7 @@ const CVHTNam = () => {
       </Space>
 
       {/* Bảng dữ liệu */}
-      <Table columns={columns} dataSource={data} pagination={{ pageSize: 3 }} bordered />
+      <Table columns={columns} dataSource={data} pagination={{ pageSize: 10 }} bordered />
         </div>
       </Content>
     </Layout>
