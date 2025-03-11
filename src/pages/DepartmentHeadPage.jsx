@@ -6,14 +6,10 @@ import Pagination from '../components/department-head/Pagination'
 
 const DepartmentHeadPage = () => {
   return (
-    <div className='flex h-screen'>
-        <Sidebar />
         <div className='flex-1 flex flex-col'>
-            <Header />
             <FilterTable/>
             <Pagination />
         </div>
-    </div>
   )
 }
 
