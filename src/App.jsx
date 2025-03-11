@@ -1,10 +1,10 @@
 import React from "react";
 import Sidebar from "./components/student/Sidebar";
-import Header from "./components/student/Header";
 import NoticeBar from "./pages/PageStudents/NoticeBar";
 import ScoreInfo from "./pages/PageStudents/ScoreInfo";
 import ScoreTable from "./pages/PageStudents/ScoreTable";
 import ActionButtons from "./pages/PageStudents/ActionButtons";
+import ClassLeader from "./pages/ClassLeaderPage";
 
 const MainLayout = () => {
   return (
@@ -14,16 +14,7 @@ const MainLayout = () => {
         rel="stylesheet"
       />
       <main className="flex w-full min-h-screen max-sm:flex-col">
-        <Sidebar />
-        <section className="flex flex-col flex-1 max-sm:w-full">
-          <Header />
-          <article className="p-5">
-            <NoticeBar />
-            <ScoreInfo />
-            <ScoreTable />
-            <ActionButtons />
-          </article>
-        </section>
+        <ClassLeader/>
       </main>
     </>
   );
