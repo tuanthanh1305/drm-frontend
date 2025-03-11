@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ReporterPage from './components/class-leader/ReporterPage'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+import { Routes, Route } from "react-router";
+import LayoutAdmin from "./layouts/LayoutAdmin";
+import AdminPage from "./pages/AdminPage";
+import Login from "./pages/Login";
+import TrainingOfficePage from './pages/TrainingOfficePage'
+const App = () => {
   return (
     <>
-      <ReporterPage/>
-    </>
-  )
-}
+      <Routes>
+        <Route path="/login" element={<Login />} />x
+        <Route path="/admin" element={<LayoutAdmin />}>
+          <Route index element={<AdminPage />} />
+          <Route path="trainning" element={<TrainingOfficePage />} />
+        </Route>
+      </Routes>
 
-export default App
+    </>
+  );
+};
+
+export default App;
