@@ -1,3 +1,4 @@
+r
 import ScorePage from "../components/class-leader/ScorePage";
 import Headers from "../components/class-leader/Headers";
 import React from "react";

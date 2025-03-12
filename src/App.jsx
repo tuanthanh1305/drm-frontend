@@ -1,23 +1,24 @@
-import React from "react";
-import Sidebar from "./components/student/Sidebar";
-import NoticeBar from "./pages/PageStudents/NoticeBar";
-import ScoreInfo from "./pages/PageStudents/ScoreInfo";
-import ScoreTable from "./pages/PageStudents/ScoreTable";
-import ActionButtons from "./pages/PageStudents/ActionButtons";
-import ClassLeader from "./pages/ClassLeaderPage";
 
-const MainLayout = () => {
+import { Routes, Route } from "react-router";
+import LayoutAdmin from "./layouts/LayoutAdmin";
+import AdminPage from "./pages/AdminPage";
+import Login from "./pages/Login";
+import TrainingOfficePage from './pages/TrainingOfficePage'
+import Student from "./components/student/Student";
+const App = () => {
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-        rel="stylesheet"
-      />
-      <main className="flex w-full min-h-screen max-sm:flex-col">
-        <ClassLeader/>
-      </main>
+      <Routes>
+        <Route path="/login" element={<Login />} />x
+        <Route path="/admin" element={<LayoutAdmin />}>
+          <Route index element={<AdminPage />} />
+          <Route path="trainning" element={<TrainingOfficePage />} />
+          <Route path="student" element={<Student />} />
+          <Route path="khanh" element={<PageKhanh></PageKhanh>}></Route>
+        </Route>
+      </Routes>
     </>
   );
 };
 
-export default MainLayout;
+export default App;
