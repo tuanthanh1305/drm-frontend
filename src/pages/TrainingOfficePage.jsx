@@ -1,10 +1,11 @@
 import React from 'react';
-import Header from '../components/training-office/header';
-import Sidebar from '../components/training-office/Sidebar';
 import Main from '../components/training-office/Main';
+import Headers from '../components/common/Headers';
+import Slidebar from '../components/common/Slidebar';
 
-import Slidebar from '../components/common/SLidebar';
-import Headers from '../components/common/Header';
+
+
+
 
 const TrainingOfficePage = () => {
   return (
