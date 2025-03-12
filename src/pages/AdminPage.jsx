@@ -32,7 +32,8 @@ const AdminPage = () => {
     <>
       <Layout style={{ minHeight: "100vh" }}>
         <Slidebar />
-        <Admin /> 
+       
+       <StudentPage />
       </Layout>
     </>
   );
