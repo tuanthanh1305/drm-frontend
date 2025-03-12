@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import TrainingOfficePage from "./pages/TrainingOfficePage";
 import PageKhanh from "./components/student/slider-Khanh/Page";
 import Student from "./components/student/Student";
+import ChildCriteria from "./components/admin/childCriteria/childCriteria";
 const App = () => {
   return (
     <>
@@ -15,6 +16,10 @@ const App = () => {
           <Route path="trainning" element={<TrainingOfficePage />} />
           <Route path="student" element={<Student />} />
           <Route path="khanh" element={<PageKhanh></PageKhanh>}></Route>
+
+          <Route path="criteria">
+            <Route path="childcriteria" element={<ChildCriteria />} />
+          </Route>
         </Route>
       </Routes>
     </>
