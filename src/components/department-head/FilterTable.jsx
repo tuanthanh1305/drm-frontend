@@ -1,223 +1,248 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Table, Select, Input, Button, Row, Col, Form, Space, Pagination } from "antd";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
+const { Option } = Select;
 
 const FilterTable = () => {
-  // Dữ liệu giả cho các filter
-  const statusOptions = [
-    "Tất cả",
-    "Đang đi học",
-    "Nghỉ học",
-    "Tạm hoãn",
-    "Đình chỉ",
-  ];
+  const statusOptions = ["Tất cả", "Đang đi học", "Nghỉ học", "Tạm hoãn", "Đình chỉ"];
   const courseOptions = ["Chọn khóa", "Khóa 2024", "Khóa 2025"];
   const classOptions = ["Chọn lớp", "Lớp A", "Lớp B", "Lớp C"];
   const yearOptions = ["2024 - 2025", "2025 - 2026", "2026 - 2027"];
   const semesterOptions = ["Học Kỳ 1", "Học Kỳ 2", "Học Kỳ 3"];
+  const [selected, setSelected] = useState([])
 
-  // Dữ liệu giả cho bảng
-  const initialData = [
-    {
-      id: 1,
-      mssv: "SP-51252",
-      name: "Phan Văn B",
-      dob: "02/06/2001",
-      score: 9.9,
-      status: "Đang đi học",
-      course: "Khóa 2024",
-      class: "Lớp A",
-      year: "2024 - 2025",
-      semester: "Học Kỳ 1",
-    },
-    {
-      id: 2,
-      mssv: "SP-51253",
-      name: "Nguyễn Thị A",
-      dob: "05/08/2000",
-      score: 8.5,
-      status: "Nghỉ học",
-      course: "Khóa 2024",
-      class: "Lớp B",
-      year: "2024 - 2025",
-      semester: "Học Kỳ 1",
-    },
-    {
-      id: 3,
-      mssv: "SP-51254",
-      name: "Trần Minh C",
-      dob: "12/01/1999",
-      score: 7.8,
-      status: "Tạm hoãn",
-      course: "Khóa 2025",
-      class: "Lớp C",
-      year: "2025 - 2026",
-      semester: "Học Kỳ 2",
-    },
-    {
-      id: 4,
-      mssv: "SP-51255",
-      name: "Lê Quang D",
-      dob: "20/02/2000",
-      score: 8.3,
-      status: "Đang đi học",
-      course: "Khóa 2025",
-      class: "Lớp A",
-      year: "2024 - 2025",
-      semester: "Học Kỳ 2",
-    },
-    {
-      id: 5,
-      mssv: "SP-51256",
-      name: "Hoàng Thanh E",
-      dob: "10/05/2001",
-      score: 9.4,
-      status: "Đình chỉ",
-      course: "Khóa 2025",
-      class: "Lớp B",
-      year: "2025 - 2026",
-      semester: "Học Kỳ 3",
-    },
-    // Thêm dữ liệu vào đây...
-  ];
+  const [filters, setFilters] = useState({
+    status: "Tất cả",
+    course: "Chọn khóa",
+    class: "Chọn lớp",
+    year: "2024 - 2025",
+    semester: "Học Kỳ 1",
+  });
 
-  // State để lưu trữ các lựa chọn của người dùng
-  const [statusFilter, setStatusFilter] = useState("Tất cả");
-  const [courseFilter, setCourseFilter] = useState("Chọn khóa");
-  const [classFilter, setClassFilter] = useState("Chọn lớp");
-  const [yearFilter, setYearFilter] = useState("2024 - 2025");
-  const [semesterFilter, setSemesterFilter] = useState("Học Kỳ 1");
-  const [filteredData, setFilteredData] = useState(initialData);
+  const [filteredData, setFilteredData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
 
-  // Hàm lọc dữ liệu
-  const filterData = () => {
-    let filtered = initialData;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["student"],
+    queryFn: async () => {
+      const res = await axios.get("http://localhost:3000/students");
+      return res?.data;
+    },
+  });
 
-    if (statusFilter !== "Tất cả") {
-      filtered = filtered.filter((student) => student.status === statusFilter);
-    }
-    if (courseFilter !== "Chọn khóa") {
-      filtered = filtered.filter((student) => student.course === courseFilter);
-    }
-    if (classFilter !== "Chọn lớp") {
-      filtered = filtered.filter((student) => student.class === classFilter);
-    }
-    if (yearFilter !== "2024 - 2025") {
-      filtered = filtered.filter((student) => student.year === yearFilter);
-    }
-    if (semesterFilter !== "Học Kỳ 1") {
-      filtered = filtered.filter(
-        (student) => student.semester === semesterFilter
-      );
-    }
+  useEffect(() => {
+    if (data) {
+      let filtered = data;
 
-    setFilteredData(filtered);
+      if (filters.status !== "Tất cả") {
+        filtered = filtered.filter((student) => student.status === filters.status);
+      }
+      if (filters.course !== "Chọn khóa") {
+        filtered = filtered.filter((student) => student.course === filters.course);
+      }
+      if (filters.class !== "Chọn lớp") {
+        filtered = filtered.filter((student) => student.class === filters.class);
+      }
+      if (filters.year !== "2024 - 2025") {
+        filtered = filtered.filter((student) => student.year === filters.year);
+      }
+      if (filters.semester !== "Học Kỳ 1") {
+        filtered = filtered.filter((student) => student.semester === filters.semester);
+      }
+
+      setFilteredData(filtered);
+      setPage(1)
+    }
+  }, [filters, data]);
+
+  const selectedStudents = (mssv, checked) => {
+    if (checked) {
+      setSelected((prev) => [...prev, mssv]); // Thêm sinh viên vào danh sách
+    } else {
+      setSelected((prev) => prev.filter((id) => id !== mssv)); // Loại bỏ nếu bỏ chọn
+    }
   };
 
-  // Hàm xử lý khi người dùng thay đổi lựa chọn trong filter
-  useEffect(() => {
-    filterData();
-  }, [statusFilter, courseFilter, classFilter, yearFilter, semesterFilter]);
+  console.log("Selected students:", selected);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error...</div>;
+
+  const columns = [
+    {
+      title: "",
+      dataIndex: "checkbox",
+      render: (_, record) => <input type="checkbox"
+      checked={selected.includes(record.mssv)}
+      onChange={(e)=>selectedStudents(record.mssv,e.target.checked)}/>,
+    },
+    { title: "STT", dataIndex: "index", render: (_, __, index) => index + 1 },
+    { title: "Mã sinh viên", dataIndex: "mssv" },
+    { title: "Họ tên", dataIndex: "name" },
+    { title: "Ngày sinh", dataIndex: "dob" },
+    { title: "Tổng điểm", dataIndex: "score" },
+    { title: "Trạng thái", dataIndex: "status" },
+    {
+      title: "Thao tác",
+      dataIndex: "actions",
+      render: () => <a href="#">Xem chi tiết</a>,
+    },
+  ];
+
+  //Hàm xuất file excel
+  const exportToExcel = ()=> {
+    //Đổi tên các trường dữ liệu
+    const formattedData = filteredData.map((student) => ({
+      "Mã Sinh Viên": student.mssv,
+      "Họ Tên": student.name,
+      "Ngày Sinh": student.dob,
+      "Tổng Điểm": student.score,
+      "Trạng Thái": student.status,
+      "Khóa Học": student.course,
+      "Lớp": student.class,
+      "Năm Học": student.year,
+      "Học Kỳ": student.semester,
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(formattedData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Students");
+
+    // Ghi file Excel
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const dataBlob = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+     // Lưu file
+     saveAs(dataBlob, "students_list.xlsx");
+  }
 
   return (
-    <div>
-      {/* Filters */}
-      <div className="p-4 bg-white border-b">
-        <div className="flex justify-between mb-4">
-          <div className="flex space-x-4">
-            <input
-              className="border p-2 rounded"
-              placeholder="MSSV"
-              type="text"
-            />
-            <input
-              className="border p-2 rounded"
-              placeholder="Tên"
-              type="text"
-            />
-            <select
-              className="border p-2 rounded"
-              onChange={(e) => setStatusFilter(e.target.value)}
-              value={statusFilter}
+    <div className="p-4 bg-white border-b">
+      {/* Bộ lọc */}
+      <Form layout="vertical" className="flex items-center justify-between">
+        <Row gutter={[16, 16]}>
+          <Col span={6}>
+            <Input placeholder="MSSV" />
+          </Col>
+          <Col span={6}>
+            <Input placeholder="Tên" />
+          </Col>
+          <Col span={6}>
+            <Select
+              value={filters.status}
+              onChange={(value) => setFilters({ ...filters, status: value })}
+              style={{ width: "100%" }}
             >
-              {statusOptions.map((status, index) => (
-                <option key={index}>{status}</option>
+              {statusOptions.map((status) => (
+                <Option key={status} value={status}>
+                  {status}
+                </Option>
               ))}
-            </select>
-          </div>
+            </Select>
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]} style={{ marginTop: "10px" }}>
+          <Col span={6}>
+            <Select
+              value={filters.course}
+              onChange={(value) => setFilters({ ...filters, course: value })}
+              style={{ width: "100%" }}
+            >
+              {courseOptions.map((course) => (
+                <Option key={course} value={course}>
+                  {course}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+          <Col span={6}>
+            <Select
+              value={filters.class}
+              onChange={(value) => setFilters({ ...filters, class: value })}
+              style={{ width: "100%" }}
+            >
+              {classOptions.map((classItem) => (
+                <Option key={classItem} value={classItem}>
+                  {classItem}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+          <Col span={6}>
+            <Select
+              value={filters.year}
+              onChange={(value) => setFilters({ ...filters, year: value })}
+              style={{ width: "100%" }}
+            >
+              {yearOptions.map((year) => (
+                <Option key={year} value={year}>
+                  {year}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+          <Col span={6}>
+            <Select
+              value={filters.semester}
+              onChange={(value) => setFilters({ ...filters, semester: value })}
+              style={{ width: "100%" }}
+            >
+              {semesterOptions.map((semester) => (
+                <Option key={semester} value={semester}>
+                  {semester}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+        </Row>
+      </Form>
 
-          <div className="flex space-x-4">
-            <select
-              className="border p-2 rounded"
-              onChange={(e) => setCourseFilter(e.target.value)}
-              value={courseFilter}
-            >
-              {courseOptions.map((course, index) => (
-                <option key={index}>{course}</option>
-              ))}
-            </select>
-            <select
-              className="border p-2 rounded"
-              onChange={(e) => setClassFilter(e.target.value)}
-              value={classFilter}
-            >
-              {classOptions.map((classItem, index) => (
-                <option key={index}>{classItem}</option>
-              ))}
-            </select>
-            <select
-              className="border p-2 rounded"
-              onChange={(e) => setYearFilter(e.target.value)}
-              value={yearFilter}
-            >
-              {yearOptions.map((year, index) => (
-                <option key={index}>{year}</option>
-              ))}
-            </select>
-            <select
-              className="border p-2 rounded"
-              onChange={(e) => setSemesterFilter(e.target.value)}
-              value={semesterFilter}
-            >
-              {semesterOptions.map((semester, index) => (
-                <option key={index}>{semester}</option>
-              ))}
-            </select>
-          </div>
+      {/* Buttons */}
+      <Row justify="space-between" style={{ margin: "20px 0" }}>
+        <Space>
+          <Button type="primary">Biên bản</Button>
+          <Button type="primary" onClick={exportToExcel}>Xuất file Excel</Button>
+        </Space>
+        <Space>
+          <Button type="primary">Duyệt sinh viên đã chọn</Button>
+          <Button type="primary">Duyệt tất cả</Button>
+        </Space>
+      </Row>
+
+      {/* Bảng dữ liệu */}
+      <Table
+        dataSource={filteredData.slice((page - 1) * pageSize, page * pageSize)}
+        columns={columns}
+        rowKey="mssv"
+        bordered
+        pagination={false}
+      />
+
+      {/* Phân trang */}
+      <div className="p-4 flex justify-between items-center bg-white border-t">
+        <div className="flex items-center">
+          <span className="mr-2">Số bản hiển thị</span>
+          <Select value={pageSize} onChange={setPageSize} style={{ width: 80 }}>
+            <Option value={5}>5</Option>
+            <Option value={10}>10</Option>
+            <Option value={20}>20</Option>
+          </Select>
         </div>
-      </div>
-
-      {/* Table */}
-      <div className="p-4 overflow-auto">
-        <table className="min-w-full bg-white border">
-          <thead>
-            <tr>
-              <th className="border p-2">STT</th>
-              <th className="border p-2">Mã sinh viên</th>
-              <th className="border p-2">Họ tên</th>
-              <th className="border p-2">Ngày sinh</th>
-              <th className="border p-2">Tổng điểm</th>
-              <th className="border p-2">Trạng thái</th>
-              <th className="border p-2">Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((student, index) => (
-              <tr
-                key={student.id}
-                className={index % 2 === 0 ? "bg-gray-100" : ""}
-              >
-                <td className="border p-2 text-center">{index + 1}</td>
-                <td className="border p-2 text-center">{student.mssv}</td>
-                <td className="border p-2 text-center">{student.name}</td>
-                <td className="border p-2 text-center">{student.dob}</td>
-                <td className="border p-2 text-center">{student.score}</td>
-                <td className="border p-2 text-center">{student.status}</td>
-                <td className="border p-2 text-center text-blue-600">
-                  <a href="#">Xem chi tiết</a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          <p>Hiển thị {filteredData.length} kết quả</p>
+        </div>
+        <Pagination
+          current={page}
+          total={filteredData.length}
+          pageSize={pageSize}
+          onChange={setPage}
+          showSizeChanger={false}
+        />
       </div>
     </div>
   );
