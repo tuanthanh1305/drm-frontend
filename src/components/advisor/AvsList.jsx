@@ -1,11 +1,10 @@
 import React from "react";
-import { Table, Layout, Input, Select, Space, Button } from "antd";
-import Headers from "../common/Headers";
+import { Table, Input, Select, Space, Button } from "antd";
+import LayoutAvs from "./LayoutAvs";
 
-const { Content } = Layout;
 const { Option } = Select;
 
-const CVHTNam = () => {
+const AvsList = () => {
   const columns = [
     { title: "STT", dataIndex: "stt", key: "stt", width: 50 },
     { title: "MSV", dataIndex: "msv", key: "msv" },
@@ -23,15 +22,15 @@ const CVHTNam = () => {
     key: index + 1,
     stt: index + 1,
     msv: "321",
-    hoTen: "ABCdsadasdasdasd",
+    hoTen: "Nguyễn Văn A",
     ngaySinh: "21/2/2001",
     tongDiem: "9.5",
     trangThai: "Đã xử lý",
   }));
+
   return (
-    <Layout className="site-layout">
-      <Headers />
-      <Content style={{ padding: "20px", background: "#fff" }}>
+    <LayoutAvs>
+      <div style={{ padding: "10px", background: "#fff", borderRadius: "1px" }}>
         {/* Bộ lọc */}
         <div style={{ border: "1px solid #ccc", padding: "10px", borderRadius: "5px", marginBottom: 10 }}>
           <Space wrap>
@@ -58,22 +57,23 @@ const CVHTNam = () => {
               <Option value="2">Học kỳ 2</Option>
             </Select>
           </Space>
-          
         </div>
-        <div style={{ border: "1px solid #ccc", padding: "10px", borderRadius: "5px" }} >
-        <Space style={{ marginBottom: 10 }}>
-        <Button type="primary" style={{ marginRight: 70 }}>Biên bản</Button>
-        <Button type="primary" >Xuất file Excel</Button>
-        <Button type="primary" style={{ marginLeft: 300 }}>Duyệt sinh viên đã chọn</Button>
-        <Button type="primary" style={{ marginLeft: 150 }}>Duyệt tất cả</Button>
-      </Space>
 
-      {/* Bảng dữ liệu */}
-      <Table columns={columns} dataSource={data} pagination={{ pageSize: 10 }} bordered />
+        {/* Nút thao tác */}
+        <div style={{ border: "1px solid #ccc", padding: "10px", borderRadius: "5px" }}>
+          <Space style={{ marginBottom: 10 }}>
+            <Button type="primary">Biên bản</Button>
+            <Button type="primary">Xuất file Excel</Button>
+            <Button type="primary" style={{ marginLeft: 300 }}>Duyệt sinh viên đã chọn</Button>
+            <Button type="primary" style={{ marginLeft: 150 }}>Duyệt tất cả</Button>
+          </Space>
+
+          {/* Bảng dữ liệu */}
+          <Table columns={columns} dataSource={data} pagination={{ pageSize: 10 }} bordered />
         </div>
-      </Content>
-    </Layout>
+      </div>
+    </LayoutAvs>
   );
 };
 
-export default CVHTNam;
+export default AvsList;

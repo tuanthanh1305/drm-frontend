@@ -1,32 +1,24 @@
-import React from "react";
-import { Avatar } from "antd";
+import React, { useState } from "react";
+import { Avatar, Input } from "antd";
 import {
   Layout,
-  Menu,
-  Breadcrumb,
-  Table,
-  Input,
-  Button,
-  Modal,
-  Form,
   Select,
-  Row,
-  Col,
 } from "antd";
 import {
   UserOutlined,
-  DashboardOutlined,
-  SolutionOutlined,
-  FileTextOutlined,
   BellOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 import logo from "../../assets/logo.png";
 
-const { Header, Content, Sider } = Layout;
-const { Option } = Select;
+const { Header } = Layout;
+
 const Headers = () => {
+  const [showSearch, setShowSearch] = useState(false);
+  const toggleSearch = () => {
+    setShowSearch((prev) => !prev);
+  };
   return (
     <Header
       className="site-layout-background "
@@ -40,12 +32,8 @@ const Headers = () => {
         backgroundColor: "#3674B5",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      {/* Logo và tiêu đề */}
+      <div style={{ display: "flex", alignItems: "center" }}>
         <Avatar
           size={64}
           src={logo}
@@ -55,9 +43,9 @@ const Headers = () => {
         <div
           style={{
             display: "flex",
-            flexDirection: "column", // Hiển thị tiêu đề theo cột
-            alignItems: "center", // Căn giữa chữ theo chiều ngang
-            justifyContent: "center", // Căn giữa theo chiều dọc
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
             marginLeft: "20px",
           }}
         >
@@ -65,7 +53,7 @@ const Headers = () => {
             level={5}
             style={{
               color: "white",
-              textAlign: "center", // Căn giữa chữ trong div
+              textAlign: "center",
               margin: 0,
               lineHeight: "1.5",
             }}
@@ -76,16 +64,46 @@ const Headers = () => {
           </Title>
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <SearchOutlined
-          style={{ fontSize: "20px", color: "white", paddingRight: "20px" }}
-        />
+
+      {/* Thanh công cụ bên phải */}
+      <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
+        {/* Biểu tượng tìm kiếm */}
+        <div
+          onMouseEnter={() => setShowSearch(true)}
+          style={{ position: "relative", paddingRight: "20px" }}
+        >
+          <SearchOutlined
+            style={{ fontSize: "20px", color: "white", cursor: "pointer" }}
+            onClick={toggleSearch} // Click để bật/tắt
+
+          />
+          {showSearch && (
+            <Input
+            placeholder="Tìm kiếm..."
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "-220px", // Dịch sang trái
+              transform: "translateY(-50%)", // Căn giữa theo chiều dọc
+              width: "200px",
+              zIndex: 10,
+            }}
+            autoFocus
+          />
+          )}
+        </div>
+
+        {/* Biểu tượng thông báo */}
         <BellOutlined
           style={{ fontSize: "20px", color: "white", paddingRight: "20px" }}
         />
+
+        {/* Thông tin người dùng */}
         <div style={{ color: "white", float: "right", paddingRight: "20px" }}>
           Nguyen Van A - K7CNTT
         </div>
+
+        {/* Avatar người dùng */}
         <Avatar
           size={64}
           icon={<UserOutlined />}
