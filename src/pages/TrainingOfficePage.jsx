@@ -2,16 +2,18 @@ import React from 'react';
 import Header from '../components/training-office/header';
 import Sidebar from '../components/training-office/Sidebar';
 import Main from '../components/training-office/Main';
-import Pagination from '../components/training-office/Pagination';
+
+import Slidebar from '../components/common/SLidebar';
+import Headers from '../components/common/Header';
 
 const TrainingOfficePage = () => {
   return (
     <div className='flex h-screen'>
-        <Sidebar />
+        <Slidebar/>
         <div className='flex-1 flex flex-col'>
-            <Header />
+            <Headers/>
             <Main/>
-            <Pagination />
+            
         </div>
     </div>
   );

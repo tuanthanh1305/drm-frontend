@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Layout, Input, Select, Table, Modal, Form } from 'antd';
+
+
+const { Option } = Select;
+const { Content } = Layout;
 
 const Main = () => {
-  // Dữ liệu giả cho các filter
-  const statusOptions = ['Tất cả', 'Đang đi học', 'Nghỉ học', 'Tạm hoãn', 'Đình chỉ'];
-  const courseOptions = ['Chọn khóa', 'Khóa 70', 'Khóa 71', 'Khóa 72'];
-  const classOptions = ['Chọn Khoa', 'Khoa CNTT', 'Khoa Kinh Tế', 'Khoa Xây Dựng'];
-  const yearOptions = ['2024 - 2025', '2025 - 2026', '2026 - 2027'];
-  const semesterOptions = ['Học Kỳ 1', 'Học Kỳ 2'];
-
   // Dữ liệu giả cho bảng
   const initialData = [
     { id: 1, mssv: 'SP-51252', name: 'Phan Văn B', dob: '02/06/2001', score: 9.0, status: 'Đang đi học', course: 'Khóa 71', class: 'Khoa CNTT', year: '2024 - 2025', semester: 'Học Kỳ 1' },
@@ -15,116 +13,186 @@ const Main = () => {
     { id: 3, mssv: 'SP-51254', name: 'Trần Minh C', dob: '12/01/1999', score: 7.8, status: 'Tạm hoãn', course: 'Khóa 70', class: 'Khoa Kinh Tế', year: '2025 - 2026', semester: 'Học Kỳ 2' },
     { id: 4, mssv: 'SP-51255', name: 'Lê Quang D', dob: '20/02/2000', score: 8.3, status: 'Đang đi học', course: 'Khóa 72', class: 'Khoa Xây Dựng', year: '2024 - 2025', semester: 'Học Kỳ 2' },
     { id: 5, mssv: 'SP-51256', name: 'Hoàng Thanh E', dob: '10/05/2001', score: 9.4, status: 'Đình chỉ', course: 'Khóa 71', class: 'Khoa CNTT', year: '2025 - 2026', semester: 'Học Kỳ 2' },
-    // Thêm dữ liệu vào đây...
+    { id: 6, mssv: 'SP-51252', name: 'Phan Văn B', dob: '02/06/2001', score: 9.0, status: 'Đang đi học', course: 'Khóa 71', class: 'Khoa CNTT', year: '2024 - 2025', semester: 'Học Kỳ 1' },
+    { id: 7, mssv: 'SP-51253', name: 'Nguyễn Thị A', dob: '05/08/2000', score: 8.5, status: 'Nghỉ học', course: 'Khóa 72', class: 'Khoa CNTT', year: '2024 - 2025', semester: 'Học Kỳ 1' },
+    { id: 8, mssv: 'SP-51254', name: 'Trần Minh C', dob: '12/01/1999', score: 7.8, status: 'Tạm hoãn', course: 'Khóa 70', class: 'Khoa Kinh Tế', year: '2025 - 2026', semester: 'Học Kỳ 2' },
+    { id: 9, mssv: 'SP-51255', name: 'Lê Quang D', dob: '20/02/2000', score: 8.3, status: 'Đang đi học', course: 'Khóa 72', class: 'Khoa Xây Dựng', year: '2024 - 2025', semester: 'Học Kỳ 2' },
+    { id: 10, mssv: 'SP-51256', name: 'Hoàng Thanh E', dob: '10/05/2001', score: 9.4, status: 'Đình chỉ', course: 'Khóa 71', class: 'Khoa CNTT', year: '2025 - 2026', semester: 'Học Kỳ 2' },
   ];
 
   // State để lưu trữ các lựa chọn của người dùng
-  const [statusFilter, setStatusFilter] = useState('Tất cả');
-  const [courseFilter, setCourseFilter] = useState('Chọn khóa');
-  const [classFilter, setClassFilter] = useState('Chọn khoa');
-  const [yearFilter, setYearFilter] = useState('2024 - 2025');
-  const [semesterFilter, setSemesterFilter] = useState('Học Kỳ 1');
+  const [filters, setFilters] = useState({});
   const [filteredData, setFilteredData] = useState(initialData);
+
+  // State để lưu trữ thông tin chi tiết của sinh viên
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm();
 
   // Hàm lọc dữ liệu
   const filterData = () => {
     let filtered = initialData;
 
-    if (statusFilter !== 'Tất cả') {
-      filtered = filtered.filter(student => student.status === statusFilter);
+    if (filters.mssv) {
+      filtered = filtered.filter(student => student.mssv.includes(filters.mssv));
     }
-    if (courseFilter !== 'Chọn khóa') {
-      filtered = filtered.filter(student => student.course === courseFilter);
+    if (filters.name) {
+      filtered = filtered.filter(student => student.name.includes(filters.name));
     }
-    if (classFilter !== 'Chọn khoa') {
-      filtered = filtered.filter(student => student.class === classFilter);
+    if (filters.status) {
+      filtered = filtered.filter(student => student.status === filters.status);
     }
-    if (yearFilter !== '2024 - 2025') {
-      filtered = filtered.filter(student => student.year === yearFilter);
+    if (filters.course) {
+      filtered = filtered.filter(student => student.course === filters.course);
     }
-    if (semesterFilter !== 'Học Kỳ 1') {
-      filtered = filtered.filter(student => student.semester === semesterFilter);
+    if (filters.class) {
+      filtered = filtered.filter(student => student.class === filters.class);
+    }
+    if (filters.year) {
+      filtered = filtered.filter(student => student.year === filters.year);
+    }
+    if (filters.semester) {
+      filtered = filtered.filter(student => student.semester === filters.semester);
     }
 
     setFilteredData(filtered);
   };
 
   // Hàm xử lý khi người dùng thay đổi lựa chọn trong filter
-  useEffect(()=> {
-    filterData()
-  },[statusFilter, courseFilter, classFilter, yearFilter, semesterFilter])
+  useEffect(() => {
+    filterData();
+  }, [filters]);
+
+  // Hàm mở modal và thiết lập sinh viên được chọn
+  const openModal = (student) => {
+    setSelectedStudent(student);
+    form.setFieldsValue(student);
+    setIsModalOpen(true);
+  };
+
+  // Hàm đóng modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedStudent(null);
+  };
+
+  // Hàm xử lý khi lưu thông tin
+  const handleSave = () => {
+    form.validateFields().then(values => {
+      console.log('Saved values:', values);
+      closeModal();
+    }).catch(info => {
+      console.log('Validate Failed:', info);
+    });
+  };
+
+  const columns = [
+    { title: 'Mã sinh viên', dataIndex: 'mssv', key: 'mssv' },
+    { title: 'Họ tên', dataIndex: 'name', key: 'name' },
+    { title: 'Ngày sinh', dataIndex: 'dob', key: 'dob' },
+    { title: 'Tổng điểm', dataIndex: 'score', key: 'score' },
+    { title: 'Trạng thái', dataIndex: 'status', key: 'status' },
+    
+    {
+      title: 'Thao tác',
+      key: 'action',
+      render: (text, record) => (
+        <a href="#" onClick={() => openModal(record)}>Xem chi tiết</a>
+      ),
+    },
+  ];
 
   return (
-    <div>
-      {/* Filters */}
-      <div className="p-4 bg-white border-b">
-        <div className="flex justify-between mb-4">
-          <div className="flex space-x-4">
-            
-            <select className="border p-2 rounded" onChange={(e) => setStatusFilter(e.target.value)} value={statusFilter}>
-              {statusOptions.map((status, index) => (
-                <option key={index}>{status}</option>
-              ))}
-            </select>
+    <Layout>
+      
+      <Content style={{ margin: "16px" }}>
+        <div style={{ background: "#fff", padding: 20, borderRadius: 8 }}>
+          <div style={{ marginBottom: 16, display: "flex", gap: 8 }}>
+            <Input placeholder="Mã sinh viên" onChange={(e) => setFilters({ ...filters, mssv: e.target.value })} />
+            <Input placeholder="Họ tên" onChange={(e) => setFilters({ ...filters, name: e.target.value })} />
+            <Select placeholder="Trạng thái" onChange={(value) => setFilters({ ...filters, status: value })} allowClear>
+              <Option value="Đang đi học">Đang đi học</Option>
+              <Option value="Nghỉ học">Nghỉ học</Option>
+              <Option value="Tạm hoãn">Tạm hoãn</Option>
+              <Option value="Đình chỉ">Đình chỉ</Option>
+            </Select>
+            <Select placeholder="Khóa" onChange={(value) => setFilters({ ...filters, course: value })} allowClear>
+              <Option value="Khóa 70">Khóa 70</Option>
+              <Option value="Khóa 71">Khóa 71</Option>
+              <Option value="Khóa 72">Khóa 72</Option>
+            </Select>
+            <Select placeholder="Khoa" onChange={(value) => setFilters({ ...filters, class: value })} allowClear>
+              <Option value="Khoa CNTT">Khoa CNTT</Option>
+              <Option value="Khoa Kinh Tế">Khoa Kinh Tế</Option>
+              <Option value="Khoa Xây Dựng">Khoa Xây Dựng</Option>
+            </Select>
+            <Select placeholder="Năm học" onChange={(value) => setFilters({ ...filters, year: value })} allowClear>
+              <Option value="2024 - 2025">2024 - 2025</Option>
+              <Option value="2025 - 2026">2025 - 2026</Option>
+              <Option value="2026 - 2027">2026 - 2027</Option>
+            </Select>
+            <Select placeholder="Học kỳ" onChange={(value) => setFilters({ ...filters, semester: value })} allowClear>
+              <Option value="Học Kỳ 1">Học Kỳ 1</Option>
+              <Option value="Học Kỳ 2">Học Kỳ 2</Option>
+            </Select>
           </div>
-
-          <div className="flex space-x-4">
-            <select className="border p-2 rounded" onChange={(e) => setCourseFilter(e.target.value)} value={courseFilter}>
-              {courseOptions.map((course, index) => (
-                <option key={index}>{course}</option>
-              ))}
-            </select>
-            <select className="border p-2 rounded" onChange={(e) => setClassFilter(e.target.value)} value={classFilter}>
-              {classOptions.map((classItem, index) => (
-                <option key={index}>{classItem}</option>
-              ))}
-            </select>
-            <select className="border p-2 rounded" onChange={(e) => setYearFilter(e.target.value)} value={yearFilter}>
-              {yearOptions.map((year, index) => (
-                <option key={index}>{year}</option>
-              ))}
-            </select>
-            <select className="border p-2 rounded" onChange={(e) => setSemesterFilter(e.target.value)} value={semesterFilter}>
-              {semesterOptions.map((semester, index) => (
-                <option key={index}>{semester}</option>
-              ))}
-            </select>
-          </div>
+          <Table columns={columns} dataSource={filteredData} pagination={{ pageSize: 5 }} />
         </div>
-      </div>
+      </Content>
 
-      {/* Table */}
-      <div className="p-4 overflow-auto">
-        <table className="min-w-full bg-white border">
-          <thead>
-            <tr>
-              <th className="border p-2">STT</th>
-              <th className="border p-2">Mã sinh viên</th>
-              <th className="border p-2">Họ tên</th>
-              <th className="border p-2">Ngày sinh</th>
-              <th className="border p-2">Tổng điểm</th>
-              <th className="border p-2">Trạng thái</th>
-              <th className="border p-2">Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((student, index) => (
-              <tr key={student.id} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
-                <td className="border p-2 text-center">{index + 1}</td>
-                <td className="border p-2 text-center">{student.mssv}</td>
-                <td className="border p-2 text-center">{student.name}</td>
-                <td className="border p-2 text-center">{student.dob}</td>
-                <td className="border p-2 text-center">{student.score}</td>
-                <td className="border p-2 text-center">{student.status}</td>
-                <td className="border p-2 text-center text-blue-600">
-                  <a href="#">Xem chi tiết</a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      {/* Modal */}
+      <Modal title="Chỉnh sửa" open={isModalOpen} onCancel={closeModal} onOk={handleSave}>
+        <Form form={form} layout="vertical">
+          <Form.Item name="mssv" label="Mã sinh viên" rules={[{ required: true, message: "Vui lòng nhập Mã sinh viên" }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="name" label="Họ tên" rules={[{ required: true, message: "Vui lòng nhập Họ tên" }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="dob" label="Ngày sinh">
+            <Input />
+          </Form.Item>
+          <Form.Item name="score" label="Tổng điểm">
+            <Input />
+          </Form.Item>
+          <Form.Item name="status" label="Trạng thái">
+            <Select>
+              <Option value="Đang đi học">Đang đi học</Option>
+              <Option value="Nghỉ học">Nghỉ học</Option>
+              <Option value="Tạm hoãn">Tạm hoãn</Option>
+              <Option value="Đình chỉ">Đình chỉ</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="course" label="Khóa">
+            <Select>
+              <Option value="Khóa 70">Khóa 70</Option>
+              <Option value="Khóa 71">Khóa 71</Option>
+              <Option value="Khóa 72">Khóa 72</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="class" label="Khoa">
+            <Select>
+              <Option value="Khoa CNTT">Khoa CNTT</Option>
+              <Option value="Khoa Kinh Tế">Khoa Kinh Tế</Option>
+              <Option value="Khoa Xây Dựng">Khoa Xây Dựng</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="year" label="Năm học">
+            <Select>
+              <Option value="2024 - 2025">2024 - 2025</Option>
+              <Option value="2025 - 2026">2025 - 2026</Option>
+              <Option value="2026 - 2027">2026 - 2027</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="semester" label="Học kỳ">
+            <Select>
+              <Option value="Học Kỳ 1">Học Kỳ 1</Option>
+              <Option value="Học Kỳ 2">Học Kỳ 2</Option>
+            </Select>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </Layout>
   );
 };
 
