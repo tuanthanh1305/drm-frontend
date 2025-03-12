@@ -3,7 +3,8 @@ import LayoutAdmin from "./layouts/LayoutAdmin";
 import AdminPage from "./pages/AdminPage";
 import Login from "./pages/Login";
 import TrainingOfficePage from "./pages/TrainingOfficePage";
-import Administrator from "./pages/Administrator";
+import PageKhanh from "./components/student/slider-Khanh/Page";
+import Student from "./components/student/Student";
 const App = () => {
   return (
     <>
@@ -12,7 +13,8 @@ const App = () => {
         <Route path="/admin" element={<LayoutAdmin />}>
           <Route index element={<AdminPage />} />
           <Route path="trainning" element={<TrainingOfficePage />} />
-          <Route path="criteria" element={<Administrator />} />
+          <Route path="student" element={<Student />} />
+          <Route path="khanh" element={<PageKhanh></PageKhanh>}></Route>
         </Route>
       </Routes>
     </>

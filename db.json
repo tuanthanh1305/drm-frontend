@@ -4,17 +4,19 @@
       "studentId": "S001",
       "classId": "C001",
       "role": 1,
+      "name": "Student A",
+      "birthday": "3/12/2025",
       "createdAt": "2025-03-11T00:00:00Z",
-      "updatedAt": "2025-03-11T00:00:00Z",
-      "id": "59aa"
+      "updatedAt": "2025-03-11T00:00:00Z"
     },
     {
       "studentId": "S002",
       "classId": "C002",
       "role": 2,
+      "name": "Student B",
+      "birthday": "3/12/2025",
       "createdAt": "2025-03-11T00:00:00Z",
-      "updatedAt": "2025-03-11T00:00:00Z",
-      "id": "d7e5"
+      "updatedAt": "2025-03-11T00:00:00Z"
     }
   ],
   "teachers": [
@@ -22,15 +24,13 @@
       "teacherId": "T001",
       "role": 1,
       "createdAt": "2025-03-11T00:00:00Z",
-      "updatedAt": "2025-03-11T00:00:00Z",
-      "id": "a4d7"
+      "updatedAt": "2025-03-11T00:00:00Z"
     },
     {
       "teacherId": "T002",
       "role": 2,
       "createdAt": "2025-03-11T00:00:00Z",
-      "updatedAt": "2025-03-11T00:00:00Z",
-      "id": "5e6f"
+      "updatedAt": "2025-03-11T00:00:00Z"
     }
   ],
   "times": [
@@ -60,12 +60,16 @@
   ],
   "childCriteria": [
     {
-      "criteriaName": "Sub Criteria update",
-      "criteriaType": 0,
-      "maxScore": 5,
+      "id": "C001",
+      "parentCriteriaId": "P001",
+      "criteriaName": "Sub Criteria 1",
+      "maxScore": 50,
+      "note": "Subcriteria note",
       "orderIndex": 1,
-      "isActive": false,
-      "id": "C001"
+      "criteriaType": 0,
+      "isActive": 1,
+      "createdAt": "2025-03-11T00:00:00Z",
+      "updatedAt": "2025-03-11T00:00:00Z"
     }
   ],
   "criteriaDetail": [
@@ -87,8 +91,7 @@
       "classId": "C001",
       "teacherId": "T001",
       "createdAt": "2025-03-11T00:00:00Z",
-      "updatedAt": "2025-03-11T00:00:00Z",
-      "id": "7a9c"
+      "updatedAt": "2025-03-11T00:00:00Z"
     }
   ],
   "scoreStatus": [
@@ -98,8 +101,7 @@
       "timeId": "T001",
       "status": 1,
       "createdAt": "2025-03-11T00:00:00Z",
-      "updatedAt": "2025-03-11T00:00:00Z",
-      "id": "2787"
+      "updatedAt": "2025-03-11T00:00:00Z"
     }
   ]
 }
