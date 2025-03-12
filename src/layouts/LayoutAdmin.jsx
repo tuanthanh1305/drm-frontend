@@ -1,8 +1,10 @@
-import Sidebar from "../components/common/Sidebar";
-import Headers from "../components/common/Headers";
+
 import { Layout } from "antd";
 import { Outlet } from "react-router";
 import { Content } from "antd/es/layout/layout";
+
+import Headers from "../components/common/Headers";
+import Slidebar from "../components/common/Slidebar";
 
 
 const LayoutAdmin = () => {
@@ -10,7 +12,7 @@ const LayoutAdmin = () => {
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
-        <Sidebar />
+        <Slidebar />
         <Layout className="site-layout">
           <Headers />
           <Content style={{ margin: "16px" }}>

@@ -1,7 +1,9 @@
 import React from 'react';
 import Main from '../components/training-office/Main';
+
 import Headers from '../components/common/Headers';
 import Slidebar from '../components/common/Slidebar';
+
 
 
 

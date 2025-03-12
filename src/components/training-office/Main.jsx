@@ -110,12 +110,12 @@ const Main = () => {
           <div style={{ marginBottom: 16, display: "flex", gap: 8 }}>
             <Input placeholder="Mã sinh viên" onChange={(e) => setFilters({ ...filters, mssv: e.target.value })} />
             <Input placeholder="Họ tên" onChange={(e) => setFilters({ ...filters, name: e.target.value })} />
-            <Select placeholder="Trạng thái" onChange={(value) => setFilters({ ...filters, status: value })} allowClear>
+            {/* <Select placeholder="Trạng thái" onChange={(value) => setFilters({ ...filters, status: value })} allowClear>
               <Option value="Đang đi học">Đang đi học</Option>
               <Option value="Nghỉ học">Nghỉ học</Option>
               <Option value="Tạm hoãn">Tạm hoãn</Option>
               <Option value="Đình chỉ">Đình chỉ</Option>
-            </Select>
+            </Select> */}
             <Select placeholder="Khóa" onChange={(value) => setFilters({ ...filters, course: value })} allowClear>
               <Option value="Khóa 70">Khóa 70</Option>
               <Option value="Khóa 71">Khóa 71</Option>
