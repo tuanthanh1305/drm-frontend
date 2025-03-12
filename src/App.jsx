@@ -14,9 +14,9 @@ const App = () => {
           <Route index element={<AdminPage />} />
           <Route path="trainning" element={<TrainingOfficePage />} />
           <Route path="student" element={<Student />} />
+          <Route path="khanh" element={<PageKhanh></PageKhanh>}></Route>
         </Route>
       </Routes>
-
     </>
   );
 };
