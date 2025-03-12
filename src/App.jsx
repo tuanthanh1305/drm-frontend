@@ -4,6 +4,8 @@ import AdminPage from "./pages/AdminPage";
 import Login from "./pages/Login";
 import TrainingOfficePage from "./pages/TrainingOfficePage";
 import PageKhanh from "./components/student/slider-Khanh/Page";
+import DepartmentHeadPage from "./pages/DepartmentHeadPage";
+import LayoutTruongKhoa from "./layouts/LayoutTruongKhoa";
 const App = () => {
     return (
         <>
@@ -16,6 +18,9 @@ const App = () => {
                         path="khanh"
                         element={<PageKhanh></PageKhanh>}
                     ></Route>
+                </Route>
+                <Route path="/truongkhoa" element={<LayoutTruongKhoa />}>
+                    <Route path="departmenthead" element={<DepartmentHeadPage/>}/>
                 </Route>
             </Routes>
         </>
