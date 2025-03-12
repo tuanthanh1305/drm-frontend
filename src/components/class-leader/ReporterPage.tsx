@@ -52,10 +52,12 @@ const ReporterPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <div id="editor" style={{ height: '400px' }}></div>
+    <div className='text-right'>
+      <button onClick={handleExport} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Export to Word</button>
+      <div className='mt-3'>
+        <div id="editor" style={{ height: '400px' }}></div>
+      </div>
       <br />
-      <button onClick={handleExport}>Export to Word</button>
     </div>
   );
 };
