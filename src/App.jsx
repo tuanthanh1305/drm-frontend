@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import AdminPage from "./pages/AdminPage";
 import Login from "./pages/Login";
+import ReporterPage from "./components/class-leader/ReporterPage";
 import TrainingOfficePage from "./pages/TrainingOfficePage";
 
 import DepartmentHeadPage from "./pages/DepartmentHeadPage";
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/admin" element={<LayoutAdmin />}>
           <Route index element={<AdminPage />} />
           <Route path="trainning" element={<TrainingOfficePage />} />
+          <Route path="report" element={<ReporterPage />} />
         </Route>
         <Route path="/student" element={<LayoutStudent />}>
           <Route index element={<StudentPage />} />
