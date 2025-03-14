@@ -53,7 +53,7 @@ const Slidebar = () => {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["2"]}
+        defaultSelectedKeys={["1"]}
         style={{ backgroundColor: "#578FCA", color: "white" }}
       >
         <Menu.Item key="1" icon={<DashboardOutlined />}>
@@ -74,3 +74,6 @@ const Slidebar = () => {
 };
 
 export default Slidebar;
+
+
+
