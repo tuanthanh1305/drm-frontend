@@ -71,9 +71,6 @@ const StudentManagementPage: React.FC = () => {
     return (
         <Layout style={{ minHeight: "100vh" }}>
             <Layout>
-                <Header style={{ background: "#fff", padding: 0, textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>
-                    HỆ THỐNG ĐÁNH GIÁ ĐIỂM RÈN LUYỆN
-                </Header>
                 <Content style={{ margin: "24px 16px", padding: 24, background: "#fff" }}>
                     <div style={{
                         marginBottom: 16,
