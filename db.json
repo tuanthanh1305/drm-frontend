@@ -92,6 +92,30 @@
       "teacherId": "T001",
       "createdAt": "2025-03-11T00:00:00Z",
       "updatedAt": "2025-03-11T00:00:00Z"
+      "className": "Lớp Công nghệ 2024",
+      "year": 2024,
+      "numStudents": 35,
+      "advisorId": "T001",
+      "classLeader": "Nguyễn Văn A",
+      "evaluation": "Tốt"
+    },
+    {
+      "classId": "C002",
+      "className": "Lớp Công nghệ 2023",
+      "year": 2023,
+      "numStudents": 40,
+      "advisorId": "T001",
+      "classLeader": "Trần Thị B",
+      "evaluation": "Khá"
+    },
+    {
+      "classId": "C003",
+      "className": "Lớp Kinh tế 2022",
+      "year": 2022,
+      "numStudents": 30,
+      "advisorId": "T001",
+      "classLeader": "Lê Văn C",
+      "evaluation": "Xuất sắc"
     }
   ],
   "scoreStatus": [
