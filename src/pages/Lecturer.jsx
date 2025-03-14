@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Layout, Table, Button, Input, Select, Modal, Form, message } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import Slidebar from "../components/common/SideBar";
-import Headers from "../components/common/Header";
+import Sidebar from "../components/common/Sidebar";
+import Headers from "../components/common/Headers";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -72,7 +72,7 @@ const Teacher = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Slidebar />
+      <Sidebar />
       <Layout>
         <Headers />
         <Content style={{ margin: "16px" }}>
