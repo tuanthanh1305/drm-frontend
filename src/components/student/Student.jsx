@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, InputNumber, Table } from 'antd';
 import "../../css/student.css";
 
-const Student2 = () => {
+const Student = () => {
 
     const columns = [
         {
@@ -86,11 +86,11 @@ const Student2 = () => {
                 </Button>
                 <Button htmlType="submit" type="primary" className="btn-item">
                     Xuất file
-                </Button>   
+                </Button>
             </div>
         </div>
 
     );
 };
 
-export default Student2;
+export default Student;
