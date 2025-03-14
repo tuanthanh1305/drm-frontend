@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import { Layout, Table, Input, Select, Button, Space } from "antd";
 import { SearchOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import type { ColumnsType } from "antd/es/table";
 
 const { Header, Content } = Layout;
 const { Option } = Select;
 
-interface Student {
-    key: string;
-    msv: string;
-    name: string;
-    birthDate: string;
-    role: string;
-    status: string;
-}
 
-const studentsData: Student[] = Array.from({ length: 30 }, (_, index) => ({
+
+const studentsData= Array.from({ length: 30 }, (_, index) => ({
     key: index.toString(),
     msv: `SV${index % 2 + 1}`,
     name: index % 2 === 0 ? "A" : "B",
@@ -24,7 +16,7 @@ const studentsData: Student[] = Array.from({ length: 30 }, (_, index) => ({
     status: "✔",
 }));
 
-const columns: ColumnsType<Student> = [
+const columns = [
     {
         title: "STT",
         dataIndex: "key",
@@ -67,7 +59,7 @@ const columns: ColumnsType<Student> = [
     },
 ];
 
-const StudentManagementPage: React.FC = () => {
+const StudentManagementPage = () => {
     return (
         <Layout style={{ minHeight: "100vh" }}>
             <Layout>
