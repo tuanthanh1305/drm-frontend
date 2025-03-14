@@ -5,16 +5,19 @@ import AdminPage from "./pages/AdminPage";
 import Login from "./pages/Login";
 import TrainingOfficePage from './pages/TrainingOfficePage'
 import Student from "./components/student/Student";
+import CanBoLopPage from "./components/class-leader/CanBoLop1";
 const App = () => {
   return (
     <>
+    
       <Routes>
+      <Route path="/canbolop1" element={<CanBoLopPage/>}/>
         <Route path="/login" element={<Login />} />x
         <Route path="/admin" element={<LayoutAdmin />}>
           <Route index element={<AdminPage />} />
           <Route path="trainning" element={<TrainingOfficePage />} />
           <Route path="student" element={<Student />} />
-          <Route path="khanh" element={<PageKhanh></PageKhanh>}></Route>
+          {/* <Route path="khanh" element={<PageKhanh></PageKhanh>}></Route> */}
         </Route>
       </Routes>
     </>
