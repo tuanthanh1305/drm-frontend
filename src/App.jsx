@@ -15,6 +15,7 @@ import CanBoLopPage from "./components/class-leader/CanBoLop1";
 import ChildCriteria from "./components/admin/childCriteria/childCriteria";
 import Teacher from './pages/Lecturer';
 import Login from "./pages/Auth/Login";
+import Admin from "./components/admin/Admin(students)";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/admin" element={<LayoutAdmin />}>
           <Route index element={<AdminPage />} />
           <Route path="trainning" element={<TrainingOfficePage />} />
+          <Route path="student" element={<Admin />} />
         </Route>
         <Route path="/student" element={<LayoutStudent />}>
           <Route index element={<StudentPage />} />
