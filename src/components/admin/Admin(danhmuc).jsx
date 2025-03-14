@@ -13,7 +13,7 @@ import {
   Row,
   Col,
 } from "antd";
-import Headers from "../common/Header";
+import Headers from "../common/Headers";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
