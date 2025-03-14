@@ -6,12 +6,13 @@ import TrainingOfficePage from "./pages/TrainingOfficePage";
 import DepartmentHeadPage from "./pages/DepartmentHeadPage";
 import LayoutTruongKhoa from "./layouts/LayoutTruongKhoa";
 
-import Student2 from "./components/student/Student2";
+// import Student2 from "./components/student/Student2";
 import LayoutStudent from './layouts/LayoutStudent';
 import LayoutAdmin from './layouts/LayoutAdmin';
 import StudentPage from "./pages/StudentPage";
 import CanBoLopPage from "./components/class-leader/CanBoLop1";
 import ChildCriteria from "./components/admin/childCriteria/childCriteria";
+import StudentManagementPage from "./components/admin/StudentManagementPage";
 
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
         </Route>
         <Route path="/student" element={<LayoutStudent />}>
           <Route index element={<StudentPage />} />
-          <Route path="student2" element={<Student2 />} />
+          {/* <Route path="student2" element={<Student2 />} /> */}
         </Route>
         <Route path="/truongkhoa" element={<LayoutTruongKhoa />}>
           <Route path="departmenthead" element={<DepartmentHeadPage />} />
