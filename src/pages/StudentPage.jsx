@@ -1,65 +1,68 @@
-import React, { useState } from 'react';
+import React from "react";
+import {
+  Table,
+  InputNumber,
+  Card,
+  Typography,
+  Space,
+  Button,
+  Select,
+  Divider,
+} from "antd";
+import { EditOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import ActionButtons from "../components/student/slidetuan-hung/ActionButtons";
+import ScoreInfo from "../components/student/slidetuan-hung/ScoreInfo";
+import ScoreTable from "../components/student/slidetuan-hung/ScoreTable";
+import NoticeBar from "../components/student/slidetuan-hung/NoticeBar";
 
-const DataTable = () => {
-    const [data, setData] = useState([
-        { id: 1, muc: 'I', tieuChi: 'Ý thức học tập (Tối đa 25 điểm)', tongDiem: '', diemSV: '' },
-        { id: 2, muc: '1.1', tieuChi: 'Kết quả học tập', tongDiem: 6, diemSV: '' },
-        { id: 3, muc: '1.2', tieuChi: 'Pototo', tongDiem: 8, diemSV: '' },
-        { id: 4, muc: '1.3', tieuChi: 'Val', tongDiem: 10, diemSV: '' },
-        { id: 5, muc: '1.1', tieuChi: 'Kết quả học tập', tongDiem: 6, diemSV: '' },
-        { id: 6, muc: '1.2', tieuChi: 'Pototo', tongDiem: 8, diemSV: '' },
-        { id: 7, muc: '1.3', tieuChi: 'Val', tongDiem: 10, diemSV: '' },
-        { id: 8, muc: '1.1', tieuChi: 'Kết quả học tập', tongDiem: 6, diemSV: '' },
-        { id: 9, muc: '1.2', tieuChi: 'Pototo', tongDiem: 8, diemSV: '' },
-        { id: 10, muc: '1.3', tieuChi: 'Val', tongDiem: 10, diemSV: '' },
+const { Text } = Typography;
 
-        // Các hàng khác...
-    ]);
+const StudentPage = () => {
+  return (
+    <Card style={{}}>
+      {/* Hàng trên cùng: Lưu ý + Chọn năm học & học kỳ */}
+      <div style={{ border: "1px solid #000", padding: "8px 16px" }}>
+        {/* Hàng trên: Lưu ý + Chọn năm học & học kỳ */}
+        <Space
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text>
+            Lưu ý: Sinh viên Xem hướng dẫn tại{" "}
+            <a href="#" style={{ color: "#1677ff" }}>
+              Đây
+            </a>
+          </Text>
 
-    const handleInputChange = (id, value) => {
-        setData(data.map(item => item.id === id ? { ...item, diemSV: value } : item));
-    };
+          <Space
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <Select defaultValue="2023 - 2024" style={{ width: 130 }}>
+              <Option value="2023-2024">2023 - 2024</Option>
+              <Option value="2022-2023">2022 - 2023</Option>
+            </Select>
+            <Button>Học Kỳ 1 ▼</Button>
+          </Space>
+        </Space>
 
-    return (
-        <div style={{ width: '100vw', height: '100vh', padding: '20px' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr>
-                        <th style={{ padding: '10px', border: '1px solid black' }}>STT</th>
-                        <th style={{ padding: '10px', border: '1px solid black' }}>Mục</th>
-                        <th style={{ padding: '10px', border: '1px solid black' }}>Tiêu chí</th>
-                        <th style={{ padding: '10px', border: '1px solid black' }}>Tổng điểm</th>
-                        <th style={{ padding: '10px', border: '1px solid black' }}>Điểm SV đánh giá</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            <td style={{ padding: '10px', border: '1px solid black' }}>{index + 1}</td>
-                            <td style={{ padding: '10px', border: '1px solid black' }}>{item.muc}</td>
-                            <td style={{ padding: '10px', border: '1px solid black' }}>{item.tieuChi}</td>
-                            <td style={{ padding: '10px', border: '1px solid black' }}>{item.tongDiem}</td>
-                            <td style={{ padding: '10px', border: '1px solid black' }}>
-                                <input
-                                    type="text"
-                                    value={item.diemSV}
-                                    onChange={e => handleInputChange(item.id, e.target.value)}
-                                    style={{ width: '100%', padding: '5px' }}
-                                />
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                <button style={{ margin: '10px', padding: '10px 20px' }}>Lưu</button>
-                <button style={{ margin: '10px', padding: '10px 20px' }}>Nhập lại</button>
-                <button style={{ margin: '10px', padding: '10px 20px' }}>Nộp đơn</button>
-                <button style={{ margin: '10px', padding: '10px 20px' }}>Xuất file</button>
-            </div>
-        </div>
-    );
-
+        {/* Hàng dưới: Thời gian đánh giá */}
+        <Text>Thời gian đánh giá: 12/12/2024 - 20/12/2024</Text>
+      </div>
+      <NoticeBar/>
+      <ScoreInfo />
+      {/* Bảng điểm */}
+      <ScoreTable />
+      <ActionButtons />
+    </Card>
+  );
 };
 
-export default DataTable
+export default StudentPage;
