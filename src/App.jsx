@@ -5,7 +5,6 @@ import TrainingOfficePage from "./pages/TrainingOfficePage";
 
 import DepartmentHeadPage from "./pages/DepartmentHeadPage";
 import LayoutTruongKhoa from "./layouts/LayoutTruongKhoa";
-import Student from "./components/student/Student";
 
 import Student2 from "./components/student/Student2";
 import LayoutStudent from './layouts/LayoutStudent';
@@ -24,9 +23,6 @@ const App = () => {
         <Route path="/admin" element={<LayoutAdmin />}>
           <Route index element={<AdminPage />} />
           <Route path="trainning" element={<TrainingOfficePage />} />
-          <Route path="students" element={<StudentManagementPage />} />
-          <Route path="student" element={<Student />} />
-          <Route path="report" element={<ReporterPage />} />
         </Route>
         <Route path="/student" element={<LayoutStudent />}>
           <Route index element={<StudentPage />} />

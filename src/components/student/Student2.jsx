@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, InputNumber, Table } from 'antd';
 import "../../css/student.css";
 
-const Student = () => {
+const Student2 = () => {
 
     const columns = [
         {
@@ -93,4 +93,4 @@ const Student = () => {
     );
 };
 
-export default Student;
+export default Student2;
