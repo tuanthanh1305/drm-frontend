@@ -25,7 +25,7 @@ import Title from "antd/es/typography/Title";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
-const Slidebar = () => {
+const SidebarTruongKhoa = () => {
   return (
     <Sider
       width={260}
@@ -57,23 +57,14 @@ const Slidebar = () => {
         style={{ backgroundColor: "#578FCA", color: "white" }}
       >
         <Menu.Item key="1" icon={<DashboardOutlined />}>
-          Dashboard
+          Đánh giá điểm cá nhân
         </Menu.Item>
         <Menu.Item key="2" icon={<SolutionOutlined />}>
-          Quản lý sinh viên
-        </Menu.Item>
-        <Menu.Item key="3" icon={<SolutionOutlined />}>
-          Quản lý giảng viên
-        </Menu.Item>
-        <Menu.Item key="4" icon={<FileTextOutlined />}>
-          Quản lý danh mục
+          Đánh giá điểm rèn luyện cấp lớp
         </Menu.Item>
       </Menu>
     </Sider>
   );
 };
 
-export default Slidebar;
-
-
-
+export default SidebarTruongKhoa;

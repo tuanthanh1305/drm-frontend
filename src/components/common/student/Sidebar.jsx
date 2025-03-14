@@ -20,12 +20,14 @@ import {
   FileTextOutlined,
   BellOutlined,
   SearchOutlined,
+  EditOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
-const Slidebar = () => {
+const Sidebar = () => {
   return (
     <Sider
       width={260}
@@ -56,24 +58,15 @@ const Slidebar = () => {
         defaultSelectedKeys={["1"]}
         style={{ backgroundColor: "#578FCA", color: "white" }}
       >
-        <Menu.Item key="1" icon={<DashboardOutlined />}>
-          Dashboard
+        <Menu.Item key="1" icon={<EditOutlined />}>
+          Đánh giá điểm cá nhân
         </Menu.Item>
-        <Menu.Item key="2" icon={<SolutionOutlined />}>
-          Quản lý sinh viên
-        </Menu.Item>
-        <Menu.Item key="3" icon={<SolutionOutlined />}>
-          Quản lý giảng viên
-        </Menu.Item>
-        <Menu.Item key="4" icon={<FileTextOutlined />}>
-          Quản lý danh mục
+        <Menu.Item key="2" icon={<FormOutlined />}>
+          Danh sách điểm
         </Menu.Item>
       </Menu>
     </Sider>
   );
 };
 
-export default Slidebar;
-
-
-
+export default Sidebar;
