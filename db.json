@@ -4,6 +4,8 @@
       "studentId": "S001",
       "classId": "C001",
       "role": 1,
+      "name": "Student A",
+      "birthday": "3/12/2025",
       "createdAt": "2025-03-11T00:00:00Z",
       "updatedAt": "2025-03-11T00:00:00Z"
     },
@@ -11,6 +13,8 @@
       "studentId": "S002",
       "classId": "C002",
       "role": 2,
+      "name": "Student B",
+      "birthday": "3/12/2025",
       "createdAt": "2025-03-11T00:00:00Z",
       "updatedAt": "2025-03-11T00:00:00Z"
     }
@@ -85,6 +89,9 @@
   "class": [
     {
       "classId": "C001",
+      "teacherId": "T001",
+      "createdAt": "2025-03-11T00:00:00Z",
+      "updatedAt": "2025-03-11T00:00:00Z"
       "className": "Lớp Công nghệ 2024",
       "year": 2024,
       "numStudents": 35,
