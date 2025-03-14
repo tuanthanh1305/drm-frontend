@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Layout, Table, Button, Input, Select, Modal, Form, message } from "antd";
+import {
+  Layout,
+  Table,
+  Button,
+  Input,
+  Select,
+  Modal,
+  Form,
+  message,
+} from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Sidebar from "../components/common/Sidebar";
 import Headers from "../components/common/Headers";
@@ -16,10 +25,15 @@ const Teacher = () => {
       name: `Phan Văn ${String.fromCharCode(65 + (index % 26))}`,
       dob: "02/06/2001",
       role: index % 2 == 0 ? "SV" : "CBL",
-      status:index % 2 == 0 ? "Đang đi dạy" : "Nghỉ dạy" ,
+      status: index % 2 == 0 ? "Đang đi dạy" : "Nghỉ dạy",
     }))
   );
-  const [filters, setFilters] = useState({ mgv: "", name: "", role: "", status: "" });
+  const [filters, setFilters] = useState({
+    mgv: "",
+    name: "",
+    role: "",
+    status: "",
+  });
   const [editingRecord, setEditingRecord] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
@@ -37,7 +51,11 @@ const Teacher = () => {
 
   const handleSave = () => {
     form.validateFields().then((values) => {
-      setData((prev) => prev.map((item) => (item.key === editingRecord.key ? { ...item, ...values } : item)));
+      setData((prev) =>
+        prev.map((item) =>
+          item.key === editingRecord.key ? { ...item, ...values } : item
+        )
+      );
       setIsModalOpen(false);
       message.success("Cập nhật thành công");
     });
@@ -63,8 +81,14 @@ const Teacher = () => {
       key: "action",
       render: (_, record) => (
         <>
-          <EditOutlined style={{ marginRight: 10, cursor: "pointer" }} onClick={() => handleEdit(record)} />
-          <DeleteOutlined style={{ cursor: "pointer", color: "red" }} onClick={() => handleDelete(record.key)} />
+          <EditOutlined
+            style={{ marginRight: 10, cursor: "pointer" }}
+            onClick={() => handleEdit(record)}
+          />
+          <DeleteOutlined
+            style={{ cursor: "pointer", color: "red" }}
+            onClick={() => handleDelete(record.key)}
+          />
         </>
       ),
     },
@@ -72,33 +96,66 @@ const Teacher = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sidebar />
       <Layout>
-        <Headers />
         <Content style={{ margin: "16px" }}>
           <div style={{ background: "#fff", padding: 20, borderRadius: 8 }}>
             <div style={{ marginBottom: 16, display: "flex", gap: 8 }}>
-              <Input placeholder="MGV" onChange={(e) => setFilters({ ...filters, mgv: e.target.value })} />
-              <Input placeholder="Tên" onChange={(e) => setFilters({ ...filters, name: e.target.value })} />
-              <Select placeholder="Vai trò" onChange={(value) => setFilters({ ...filters, role: value })} allowClear>
+              <Input
+                placeholder="MGV"
+                onChange={(e) =>
+                  setFilters({ ...filters, mgv: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Tên"
+                onChange={(e) =>
+                  setFilters({ ...filters, name: e.target.value })
+                }
+              />
+              <Select
+                placeholder="Vai trò"
+                onChange={(value) => setFilters({ ...filters, role: value })}
+                allowClear
+              >
                 <Option value="SV">SV</Option>
                 <Option value="CBL">CBL</Option>
               </Select>
-              <Select placeholder="Trạng thái" onChange={(value) => setFilters({ ...filters, status: value })} allowClear>
+              <Select
+                placeholder="Trạng thái"
+                onChange={(value) => setFilters({ ...filters, status: value })}
+                allowClear
+              >
                 <Option value="Đang đi dạy">Đang đi dạy</Option>
                 <Option value="Nghỉ dạy">Nghỉ dạy</Option>
               </Select>
             </div>
-            <Table columns={columns} dataSource={filteredData} pagination={{ pageSize: 5 }} />
+            <Table
+              columns={columns}
+              dataSource={filteredData}
+              pagination={{ pageSize: 5 }}
+            />
           </div>
         </Content>
       </Layout>
-      <Modal title="Chỉnh sửa" open={isModalOpen} onCancel={() => setIsModalOpen(false)} onOk={handleSave}>
+      <Modal
+        title="Chỉnh sửa"
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        onOk={handleSave}
+      >
         <Form form={form} layout="vertical">
-          <Form.Item name="mgv" label="MGV" rules={[{ required: true, message: "Vui lòng nhập MGV" }]}>
+          <Form.Item
+            name="mgv"
+            label="MGV"
+            rules={[{ required: true, message: "Vui lòng nhập MGV" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="name" label="Tên" rules={[{ required: true, message: "Vui lòng nhập tên" }]}>
+          <Form.Item
+            name="name"
+            label="Tên"
+            rules={[{ required: true, message: "Vui lòng nhập tên" }]}
+          >
             <Input />
           </Form.Item>
           <Form.Item name="dob" label="Ngày sinh">
