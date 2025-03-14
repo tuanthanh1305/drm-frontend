@@ -2,11 +2,17 @@ import { Routes, Route } from "react-router";
 import AdminPage from "./pages/AdminPage";
 import Login from "./pages/Login";
 import TrainingOfficePage from "./pages/TrainingOfficePage";
+
+import PageKhanh from "./components/student/slider-Khanh/Page";
+import DepartmentHeadPage from "./pages/DepartmentHeadPage";
+import LayoutTruongKhoa from "./layouts/LayoutTruongKhoa";
+
 import Student2 from "./components/student/Student2";
 import LayoutStudent from './layouts/LayoutStudent';
 import LayoutAdmin from './layouts/LayoutAdmin';
 import StudentPage from "./pages/StudentPage";
 import CanBoLopPage from "./components/class-leader/CanBoLop1";
+
 const App = () => {
     return (
         <>
@@ -20,6 +26,9 @@ const App = () => {
                 <Route path="/student" element={<LayoutStudent />}>
                     <Route index element={<StudentPage />} />
                     <Route path="student2" element={<Student2 />} />
+                </Route>
+                <Route path="/truongkhoa" element={<LayoutTruongKhoa />}>
+                    <Route path="departmenthead" element={<DepartmentHeadPage/>}/>
                 </Route>
             </Routes>
         </>
