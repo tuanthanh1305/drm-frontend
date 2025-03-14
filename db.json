@@ -1,0 +1,125 @@
+{
+    "students": [
+      {
+        "studentId": "S001",
+        "classId": "C001",
+        "role": 1,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      },
+      {
+        "studentId": "S002",
+        "classId": "C002",
+        "role": 2,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ],
+    "teachers": [
+      {
+        "teacherId": "T001",
+        "role": 1,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      },
+      {
+        "teacherId": "T002",
+        "role": 2,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ],
+    "times": [
+      {
+        "id": "T001",
+        "semester": 1,
+        "startYear": 2025,
+        "endYear": 2026,
+        "startDate": "2025-03-11",
+        "endDate": "2026-03-11",
+        "createdBy": "admin",
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ],
+    "parentCriteria": [
+      {
+        "id": "P001",
+        "criteriaName": "Criteria 1",
+        "maxScore": 100,
+        "note": "Important",
+        "orderIndex": 1,
+        "isActive": 1,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ],
+    "childCriteria": [
+      {
+        "id": "C001",
+        "parentCriteriaId": "P001",
+        "criteriaName": "Sub Criteria 1",
+        "maxScore": 50,
+        "note": "Subcriteria note",
+        "orderIndex": 1,
+        "criteriaType": 0,
+        "isActive": 1,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ],
+    "criteriaDetail": [
+      {
+        "id": "D001",
+        "childCriteriaId": "C001",
+        "scoreId": "S001",
+        "proof": "Proof 1",
+        "note": "Note 1",
+        "studentScore": 80,
+        "moniterScore": 75,
+        "teacherScore": 90,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ],
+    "class": [
+      {
+        "classId": "C001",
+        "className": "Lớp Công nghệ 2024",
+        "year": 2024,
+        "numStudents": 35,
+        "advisorId": "T001",
+        "classLeader": "Nguyễn Văn A",
+        "evaluation": "Tốt"
+      },
+      {
+        "classId": "C002",
+        "className": "Lớp Công nghệ 2023",
+        "year": 2023,
+        "numStudents": 40,
+        "advisorId": "T001",
+        "classLeader": "Trần Thị B",
+        "evaluation": "Khá"
+      },
+      {
+        "classId": "C003",
+        "className": "Lớp Kinh tế 2022",
+        "year": 2022,
+        "numStudents": 30,
+        "advisorId": "T001",
+        "classLeader": "Lê Văn C",
+        "evaluation": "Xuất sắc"
+      }
+    ],
+    "scoreStatus": [
+      {
+        "scoreId": "S001",
+        "studentId": "S001",
+        "timeId": "T001",
+        "status": 1,
+        "createdAt": "2025-03-11T00:00:00Z",
+        "updatedAt": "2025-03-11T00:00:00Z"
+      }
+    ]
+  }
+  

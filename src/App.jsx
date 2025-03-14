@@ -1,11 +1,11 @@
 import './App.css'
-import CanBoLopPage from './pages/CanBoLopPage'
+import CanBoLopPage from './components/class-leader/CanBoLop1'
 
 function App() {
 
   return (
     <>
-   <CanBoLopPage/>
+    <CanBoLopPage/>
     </>
   )
 }
