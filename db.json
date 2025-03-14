@@ -127,5 +127,10 @@
       "createdAt": "2025-03-11T00:00:00Z",
       "updatedAt": "2025-03-11T00:00:00Z"
     }
+  ],
+  "users": [
+    { "id": 1, "name": "Học sinh A", "email": "student@example.com", "password": "123456", "role": "student" },
+    { "id": 2, "name": "Phụ huynh B", "email": "parent@example.com", "password": "123456", "role": "parent" },
+    { "id": 3, "name": "Admin C", "email": "admin@example.com", "password": "123456", "role": "admin" }
   ]
 }
