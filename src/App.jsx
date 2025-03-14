@@ -15,28 +15,28 @@ import ChildCriteria from "./components/admin/childCriteria/childCriteria";
 
 
 const App = () => {
-    return (
-        <>
-            <Routes>
-                <Route path="/canbolop1" element={<CanBoLopPage/>}/>
-                <Route path="/login" element={<Login />} />
-                <Route path="/admin" element={<LayoutAdmin />}>
-                    <Route index element={<AdminPage />} />
-                    <Route path="trainning" element={<TrainingOfficePage />} />
-                </Route>
-                <Route path="/student" element={<LayoutStudent />}>
-                    <Route index element={<StudentPage />} />
-                    <Route path="student2" element={<Student2 />} />
-                </Route>
-                <Route path="/truongkhoa" element={<LayoutTruongKhoa />}>
-                    <Route path="departmenthead" element={<DepartmentHeadPage/>}/>
-                </Route>
- <Route path="criteria">
-            <Route path="childcriteria" element={<ChildCriteria />} />
-          </Route>
-            </Routes>
-        </>
-    );
+  return (
+    <>
+      <Routes>
+        <Route path="/canbolop1" element={<CanBoLopPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<LayoutAdmin />}>
+          <Route index element={<AdminPage />} />
+          <Route path="trainning" element={<TrainingOfficePage />} />
+        </Route>
+        <Route path="/student" element={<LayoutStudent />}>
+          <Route index element={<StudentPage />} />
+          <Route path="student2" element={<Student2 />} />
+        </Route>
+        <Route path="/truongkhoa" element={<LayoutTruongKhoa />}>
+          <Route path="departmenthead" element={<DepartmentHeadPage />} />
+        </Route>
+        <Route path="criteria" element={<LayoutAdmin />}>
+          <Route path="childcriteria" element={<ChildCriteria />} />
+        </Route>
+      </Routes>
+    </>
+  );
 
 };
 
