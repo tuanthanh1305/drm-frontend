@@ -12,6 +12,7 @@ import LayoutAdmin from './layouts/LayoutAdmin';
 import StudentPage from "./pages/StudentPage";
 import CanBoLopPage from "./components/class-leader/CanBoLop1";
 import ChildCriteria from "./components/admin/childCriteria/childCriteria";
+import Teacher from './pages/Lecturer';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="criteria" element={<LayoutAdmin />}>
           <Route path="childcriteria" element={<ChildCriteria />} />
         </Route>
+        <Route path="/teacher" element={<Teacher />}></Route>
       </Routes>
     </>
   );
